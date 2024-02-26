@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Evento } from '../interfaces/evento.interface';
+import { Evento } from '@interfaces/evento.interface';
+import { DetalleEventoResponse } from '@interfaces/detalle-evento.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class EventsService {
     return this.http.get<Array<Evento>>(this.url + '/events');
   }
 
-  getEventDetail(id: number): Observable<Evento> {
-    return this.http.get<Evento>(this.url + '/event_info_' + id);
+  getEventDetail(id: number): Observable<DetalleEventoResponse> {
+    return this.http.get<DetalleEventoResponse>(this.url + '/event_info_' + id);
   }
 }

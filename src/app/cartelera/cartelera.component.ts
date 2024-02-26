@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { EventoComponent } from '../evento/evento.component';
-import { EventsService } from '../services/events.service';
-import { Evento } from '../interfaces/evento.interface';
+import { EventsService } from '@services/events.service';
+import { Evento } from '@interfaces/evento.interface';
 import { Subscription } from 'rxjs';
 
 @Component({

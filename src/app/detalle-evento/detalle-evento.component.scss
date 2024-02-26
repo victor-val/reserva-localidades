@@ -18,3 +18,15 @@
     grid-column-gap: unset;
   }
 }
+.sesion {
+  display: flex;
+  justify-content: space-around;
+}
+
+.contador span {
+  cursor: pointer;
+}
+
+.sesiones {
+  border: 0.2px solid;
+}

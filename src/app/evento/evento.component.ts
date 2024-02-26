@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { Evento } from '../interfaces/evento.interface';
+import { Evento } from '@interfaces/evento.interface';
 import { RouterModule } from '@angular/router';
 
 @Component({
