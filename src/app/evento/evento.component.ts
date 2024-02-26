@@ -3,15 +3,15 @@ import { Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { Evento } from '../interfaces/evento.interface';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-evento',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, RouterModule],
   templateUrl: './evento.component.html',
   styleUrl: './evento.component.scss',
 })
 export class EventoComponent {
   @Input() evento!: Evento;
-
 }

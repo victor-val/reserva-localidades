@@ -7,9 +7,13 @@ import { Evento } from '../interfaces/evento.interface';
   providedIn: 'root',
 })
 export class EventsService {
-  url = 'http://localhost:3000/events';
+  url = 'http://localhost:3000';
   constructor(private http: HttpClient) {}
   getEvents(): Observable<Array<Evento>> {
-    return this.http.get<Array<Evento>>(this.url);
+    return this.http.get<Array<Evento>>(this.url + '/events');
+  }
+
+  getEventDetail(id: number): Observable<Evento> {
+    return this.http.get<Evento>(this.url + '/event_info_' + id);
   }
 }
