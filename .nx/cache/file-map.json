@@ -1,0 +1,195 @@
+{
+  "version": "6.0",
+  "nxVersion": "17.2.8",
+  "deps": {
+    "@angular/animations": "^17.0.0",
+    "@angular/common": "^17.0.0",
+    "@angular/compiler": "^17.0.0",
+    "@angular/core": "^17.0.0",
+    "@angular/forms": "^17.0.0",
+    "@angular/platform-browser": "^17.0.0",
+    "@angular/platform-browser-dynamic": "^17.0.0",
+    "@angular/router": "^17.0.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.2",
+    "@angular-devkit/build-angular": "^17.0.8",
+    "@angular-eslint/builder": "17.2.1",
+    "@angular-eslint/eslint-plugin": "17.2.1",
+    "@angular-eslint/eslint-plugin-template": "17.2.1",
+    "@angular-eslint/schematics": "17.2.1",
+    "@angular-eslint/template-parser": "17.2.1",
+    "@angular/cli": "^17.0.8",
+    "@angular/compiler-cli": "^17.0.0",
+    "@types/jasmine": "~5.1.0",
+    "@typescript-eslint/eslint-plugin": "6.19.0",
+    "@typescript-eslint/parser": "6.19.0",
+    "eslint": "^8.56.0",
+    "jasmine-core": "~5.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.2.2"
+  },
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": ".editorconfig",
+        "hash": "6686520031028425313"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "14645878845883387518"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "13044518069027839699"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "5331566439708925252"
+      },
+      {
+        "file": ".vscode/launch.json",
+        "hash": "17038929134016848735"
+      },
+      {
+        "file": ".vscode/tasks.json",
+        "hash": "5336636969995539451"
+      },
+      {
+        "file": "README.md",
+        "hash": "1375676081014973026"
+      },
+      {
+        "file": "angular.json",
+        "hash": "12154934811775236507"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "4854874867610237155"
+      },
+      {
+        "file": "package.json",
+        "hash": "10590096742586509639"
+      },
+      {
+        "file": "src/app/app.component.css",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/app.component.html",
+        "hash": "13732785681278115"
+      },
+      {
+        "file": "src/app/app.component.spec.ts",
+        "hash": "3861780727087086047"
+      },
+      {
+        "file": "src/app/app.component.ts",
+        "hash": "16010663931094695068"
+      },
+      {
+        "file": "src/app/app.config.ts",
+        "hash": "5428614352870646528"
+      },
+      {
+        "file": "src/app/app.routes.ts",
+        "hash": "17332023443458792963"
+      },
+      {
+        "file": "src/app/cartelera/cartelera.component.html",
+        "hash": "3281959622833177661"
+      },
+      {
+        "file": "src/app/cartelera/cartelera.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/cartelera/cartelera.component.spec.ts",
+        "hash": "17483946327947622744"
+      },
+      {
+        "file": "src/app/cartelera/cartelera.component.ts",
+        "hash": "17196003510432434329"
+      },
+      {
+        "file": "src/app/shared/header/header.component.html",
+        "hash": "13270834388122929549"
+      },
+      {
+        "file": "src/app/shared/header/header.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/shared/header/header.component.spec.ts",
+        "hash": "1303285520994821276"
+      },
+      {
+        "file": "src/app/shared/header/header.component.ts",
+        "hash": "13739310342143413540"
+      },
+      {
+        "file": "src/app/shared/shared.module.ts",
+        "hash": "6626447526467318842"
+      },
+      {
+        "file": "src/assets/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/assets/data/event-info-184.json",
+        "hash": "13937902395608077412"
+      },
+      {
+        "file": "src/assets/data/event-info-68.json",
+        "hash": "16558097109434081995"
+      },
+      {
+        "file": "src/assets/data/events.json",
+        "hash": "11725798898596386231"
+      },
+      {
+        "file": "src/assets/img/sample-image.jpg",
+        "hash": "5380987205526250564"
+      },
+      {
+        "file": "src/assets/img/trash.png",
+        "hash": "12883866208099935807"
+      },
+      {
+        "file": "src/favicon.ico",
+        "hash": "3988961587069885523"
+      },
+      {
+        "file": "src/index.html",
+        "hash": "9262387158349552847"
+      },
+      {
+        "file": "src/main.ts",
+        "hash": "4927504514031276065"
+      },
+      {
+        "file": "src/styles.css",
+        "hash": "5195668842064076916"
+      },
+      {
+        "file": "tsconfig.app.json",
+        "hash": "17337579397915052279"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "6830907402848794383"
+      },
+      {
+        "file": "tsconfig.spec.json",
+        "hash": "15575553540147145788"
+      }
+    ]
+  }
+}
