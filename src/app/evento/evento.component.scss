@@ -1,0 +1,21 @@
+mat-card {
+  border: 2px solid #000;
+  width: 25vw;
+}
+
+@media screen and (width <= 600px) {
+  mat-card {
+    width: 50vw;
+  }
+}
+
+button {
+  width: 100%;
+}
+.mdc-card__actions {
+  padding: unset;
+}
+
+.mat-mdc-raised-button {
+  border-radius: unset;
+}
