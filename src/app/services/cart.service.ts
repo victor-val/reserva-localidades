@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CartElement } from '@interfaces/cart-element.interface';
 import { Session } from '@interfaces/detalle-evento.interface';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   products: CartElement[] = [];
-  private products$ = new Subject<CartElement[]>();
+  private products$ = new BehaviorSubject<CartElement[]>([]);
 
   addProduct(id: number, title: string, sesion: Session) {
     if (sesion.availability === 0) return;
