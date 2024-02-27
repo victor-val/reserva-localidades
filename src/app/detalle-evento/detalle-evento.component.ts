@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CarritoComponent } from '../carrito/carrito.component';
@@ -17,6 +23,7 @@ import { CartService } from '@services/cart.service';
   imports: [CommonModule, RouterModule, CarritoComponent],
   templateUrl: './detalle-evento.component.html',
   styleUrl: './detalle-evento.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetalleEventoComponent implements OnInit, OnDestroy {
   id!: number;
@@ -26,7 +33,8 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
-    private cartService: CartService
+    private cartService: CartService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -43,6 +51,7 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
       .subscribe(({ event, sessions }: DetalleEventoResponse) => {
         this.detalle = { id: event.id, title: event.title, sessions };
         this.detalle.sessions.sort((a, b) => a.date - b.date);
+        this.cdr.detectChanges();
       });
     this.subscriptions.push(sub);
   }

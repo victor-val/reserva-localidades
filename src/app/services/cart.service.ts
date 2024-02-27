@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CartElement } from '@interfaces/cart-element.interface';
 import { Session } from '@interfaces/detalle-evento.interface';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   products: CartElement[] = [];
+  private products$ = new Subject<CartElement[]>();
 
   addProduct(id: number, title: string, sesion: Session) {
     if (sesion.availability === 0) return;
@@ -18,7 +20,6 @@ export class CartService {
         title,
         sessions: [{ dateSession: sesion.date, seatsSelected: 1 }],
       });
-      return;
     } else {
       const sesionSel = product.sessions.find(
         (s) => s.dateSession === sesion.date
@@ -33,6 +34,7 @@ export class CartService {
     }
 
     console.log(this.products);
+    this.products$.next(this.products);
   }
 
   deleteProduct(id: number, dateSesion: number) {
@@ -60,10 +62,15 @@ export class CartService {
       }
       console.log(this.products);
     }
+    this.products$.next(this.products);
   }
 
   getProducts(): CartElement[] {
     return this.products;
+  }
+
+  getProducts$(): Observable<CartElement[]> {
+    return this.products$.asObservable();
   }
 
   getSeatsSelected(id: number, dateSesion: number): number {
