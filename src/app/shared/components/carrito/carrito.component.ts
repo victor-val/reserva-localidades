@@ -6,8 +6,8 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { CartElement } from '@interfaces/cart-element.interface';
-import { CartService } from '@services/cart.service';
+import { CartElement } from '../../interfaces/cart-element.interface';
+import { CartService } from '../../services/cart.service';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({

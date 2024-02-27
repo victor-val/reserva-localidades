@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CartElement } from '@interfaces/cart-element.interface';
-import { Session } from '@interfaces/detalle-evento.interface';
+import { CartElement } from '../interfaces/cart-element.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -10,24 +9,20 @@ export class CartService {
   products: CartElement[] = [];
   private products$ = new BehaviorSubject<CartElement[]>([]);
 
-  addProduct(id: number, title: string, sesion: Session) {
-    if (sesion.availability === 0) return;
+  addProduct(id: number, title: string, sesion: number) {
     const product = this.products.find((p) => p.id === id);
     if (!product) {
       this.products.push({
         id,
         title,
-        sessions: [{ dateSession: sesion.date, seatsSelected: 1 }],
+        sessions: [{ dateSession: sesion, seatsSelected: 1 }],
       });
     } else {
-      const sesionSel = product.sessions.find(
-        (s) => s.dateSession === sesion.date
-      );
+      const sesionSel = product.sessions.find((s) => s.dateSession === sesion);
       if (sesionSel) {
-        if (sesion.availability >= sesionSel.seatsSelected + 1)
-          sesionSel.seatsSelected = sesionSel.seatsSelected + 1;
+        sesionSel.seatsSelected = sesionSel.seatsSelected + 1;
       } else {
-        product.sessions.push({ dateSession: sesion.date, seatsSelected: 1 });
+        product.sessions.push({ dateSession: sesion, seatsSelected: 1 });
         product.sessions.sort((a, b) => a.dateSession - b.dateSession);
       }
     }

@@ -7,7 +7,8 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { CarritoComponent } from '../carrito/carrito.component';
+import { CarritoComponent } from '@shared/components/carrito/carrito.component';
+import { CartService } from '@shared/services/cart.service';
 import { EventsService } from '@services/events.service';
 import { CommonModule } from '@angular/common';
 import {
@@ -15,7 +16,6 @@ import {
   DetalleEventoResponse,
   Session,
 } from '@interfaces/detalle-evento.interface';
-import { CartService } from '@services/cart.service';
 
 @Component({
   selector: 'app-detalle-evento',
@@ -65,7 +65,10 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   }
 
   addToCart(id: number, title: string, sesion: Session) {
-    this.cartService.addProduct(id, title, sesion);
+    if (sesion.availability === 0) return;
+    const seatsSelected = this.getSeatsSelected(id, sesion.date);
+    if (sesion.availability >= seatsSelected + 1)
+      this.cartService.addProduct(id, title, sesion.date);
   }
 
   removeFromCart(id: number, dateSesion: number) {

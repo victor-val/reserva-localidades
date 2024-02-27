@@ -22,14 +22,14 @@ import { Subscription } from 'rxjs';
 })
 export class CarteleraComponent implements OnInit, OnDestroy {
   eventos: Evento[] = [];
-  subs!: Subscription;
+  subscription!: Subscription;
   constructor(
     private eventsService: EventsService,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
-    this.subs = this.eventsService.getEvents().subscribe((events) => {
+    this.subscription = this.eventsService.getEvents().subscribe((events) => {
       this.eventos = events;
       this.eventos.sort((a, b) => a.endDate - b.endDate);
       this.cdr.detectChanges();
@@ -37,6 +37,6 @@ export class CarteleraComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subs.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }
