@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { Evento } from '@interfaces/evento.interface';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-evento',
@@ -14,4 +14,9 @@ import { RouterModule } from '@angular/router';
 })
 export class EventoComponent {
   @Input() evento!: Evento;
+
+  constructor(private router: Router){}
+  goToDetail(){
+    this.router.navigate(['/detalle-evento/', this.evento.id]);
+  }
 }

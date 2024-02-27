@@ -20,7 +20,7 @@ button {
 .mat-mdc-raised-button {
   border-radius: unset;
 }
-
-a {
-  text-decoration: none;
+a,
+img {
+  cursor: pointer;
 }
