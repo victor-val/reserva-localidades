@@ -3,18 +3,22 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Evento } from '@interfaces/evento.interface';
 import { DetalleEventoResponse } from '@interfaces/detalle-evento.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventsService {
-  url = 'http://localhost:3000';
-  constructor(private http: HttpClient) {}
-  getEvents(): Observable<Array<Evento>> {
-    return this.http.get<Array<Evento>>(this.url + '/events');
+  private URL: string;
+
+  constructor(private http: HttpClient) {
+    this.URL = environment.urlAPI;
+  }
+  getEvents(): Observable<Evento[]> {
+    return this.http.get<Evento[]>(this.URL + '/events');
   }
 
   getEventInfo(id: number): Observable<DetalleEventoResponse> {
-    return this.http.get<DetalleEventoResponse>(this.url + '/event_info_' + id);
+    return this.http.get<DetalleEventoResponse>(this.URL + '/event_info_' + id);
   }
 }

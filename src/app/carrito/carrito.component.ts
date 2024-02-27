@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CartElement } from '@interfaces/cart-element.interface';
-import { Session } from '@interfaces/detalle-evento.interface';
 import { CartService } from '@services/cart.service';
 
 @Component({
