@@ -36,15 +36,11 @@ export class CartService {
 
   deleteProduct(id: number, dateSesion: number) {
     const product = this.products.find((p) => p.id === id);
-    if (!product) {
-      return;
-    }
+    if (!product) return;
     const sesionSelected = product.sessions.find(
       (s) => s.dateSession === dateSesion
     );
-    if (!sesionSelected) {
-      return;
-    }
+    if (!sesionSelected) return;
     sesionSelected.seatsSelected -= 1;
     if (sesionSelected.seatsSelected === 0) {
       product.sessions = product.sessions.filter(
@@ -55,10 +51,6 @@ export class CartService {
       }
     }
     this.products$.next(this.products);
-  }
-
-  getProducts(): CartElement[] {
-    return this.products;
   }
 
   getProducts$(): Observable<CartElement[]> {

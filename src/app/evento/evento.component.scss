@@ -15,16 +15,9 @@ mat-card {
   }
 }
 
-button {
-  width: 100%;
-}
-.mdc-card__actions {
-  padding: unset;
-}
-
 mat-card-title,
 mat-card-subtitle {
-  color: #0097a7;
+  color: var(--primary);
 }
 
 mat-card-subtitle {
@@ -40,4 +33,11 @@ mat-card-content {
 a,
 img {
   cursor: pointer;
+}
+
+button {
+  width: 100%;
+}
+.mdc-card__actions {
+  padding: unset;
 }
