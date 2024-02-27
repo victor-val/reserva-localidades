@@ -37,7 +37,14 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.2.2"
   },
-  "pathMappings": {},
+  "pathMappings": {
+    "@interfaces/*": [
+      "./src/app/interfaces/*"
+    ],
+    "@services/*": [
+      "./src/app/services/*"
+    ]
+  },
   "nxJsonPlugins": [],
   "fileMap": {
     "projectFileMap": {},
@@ -72,23 +79,27 @@
       },
       {
         "file": "angular.json",
-        "hash": "12154934811775236507"
+        "hash": "995003568321943784"
       },
       {
         "file": "package-lock.json",
-        "hash": "4854874867610237155"
+        "hash": "4034502693445446362"
       },
       {
         "file": "package.json",
-        "hash": "10590096742586509639"
+        "hash": "8154653509421283850"
       },
       {
-        "file": "src/app/app.component.css",
-        "hash": "3244421341483603138"
+        "file": "src/app/app-routing.module.ts",
+        "hash": "13368193244783620417"
       },
       {
         "file": "src/app/app.component.html",
         "hash": "13732785681278115"
+      },
+      {
+        "file": "src/app/app.component.scss",
+        "hash": "3244421341483603138"
       },
       {
         "file": "src/app/app.component.spec.ts",
@@ -96,23 +107,35 @@
       },
       {
         "file": "src/app/app.component.ts",
-        "hash": "16010663931094695068"
+        "hash": "9726766957347703614"
       },
       {
-        "file": "src/app/app.config.ts",
-        "hash": "5428614352870646528"
+        "file": "src/app/app.module.ts",
+        "hash": "16613382323354276154"
       },
       {
-        "file": "src/app/app.routes.ts",
-        "hash": "17332023443458792963"
+        "file": "src/app/carrito/carrito.component.html",
+        "hash": "12312551881383233925"
+      },
+      {
+        "file": "src/app/carrito/carrito.component.scss",
+        "hash": "9663050461487147310"
+      },
+      {
+        "file": "src/app/carrito/carrito.component.spec.ts",
+        "hash": "7313351595095746218"
+      },
+      {
+        "file": "src/app/carrito/carrito.component.ts",
+        "hash": "17817138225453190753"
       },
       {
         "file": "src/app/cartelera/cartelera.component.html",
-        "hash": "3281959622833177661"
+        "hash": "8670439327302326369"
       },
       {
         "file": "src/app/cartelera/cartelera.component.scss",
-        "hash": "3244421341483603138"
+        "hash": "12390773672010206675"
       },
       {
         "file": "src/app/cartelera/cartelera.component.spec.ts",
@@ -120,15 +143,67 @@
       },
       {
         "file": "src/app/cartelera/cartelera.component.ts",
-        "hash": "17196003510432434329"
+        "hash": "1186413187546020002"
+      },
+      {
+        "file": "src/app/detalle-evento/detalle-evento.component.html",
+        "hash": "13011891992531517850"
+      },
+      {
+        "file": "src/app/detalle-evento/detalle-evento.component.scss",
+        "hash": "11013441950589617090"
+      },
+      {
+        "file": "src/app/detalle-evento/detalle-evento.component.spec.ts",
+        "hash": "16233650417735987475"
+      },
+      {
+        "file": "src/app/detalle-evento/detalle-evento.component.ts",
+        "hash": "14923346841012831973"
+      },
+      {
+        "file": "src/app/evento/evento.component.html",
+        "hash": "10896452431247636090"
+      },
+      {
+        "file": "src/app/evento/evento.component.scss",
+        "hash": "13602023688511138851"
+      },
+      {
+        "file": "src/app/evento/evento.component.spec.ts",
+        "hash": "6096888236749428171"
+      },
+      {
+        "file": "src/app/evento/evento.component.ts",
+        "hash": "13152468761019353456"
+      },
+      {
+        "file": "src/app/interfaces/cart-element.interface.ts",
+        "hash": "11548508985521503268"
+      },
+      {
+        "file": "src/app/interfaces/detalle-evento.interface.ts",
+        "hash": "2679624093741635209"
+      },
+      {
+        "file": "src/app/interfaces/evento.interface.ts",
+        "hash": "15362006093310571305"
+      },
+      {
+        "file": "src/app/services/cart.service.ts",
+        "hash": "4779216220983260575"
+      },
+      {
+        "file": "src/app/services/events.service.ts",
+        "hash": "4963647224420872913"
       },
       {
         "file": "src/app/shared/header/header.component.html",
-        "hash": "13270834388122929549"
+        "hash": "12138306702674799134"
       },
       {
         "file": "src/app/shared/header/header.component.scss",
-        "hash": "3244421341483603138"
+        "hash": "5562530118867216498"
       },
       {
         "file": "src/app/shared/header/header.component.spec.ts",
@@ -136,15 +211,19 @@
       },
       {
         "file": "src/app/shared/header/header.component.ts",
-        "hash": "13739310342143413540"
+        "hash": "10812375120502062559"
       },
       {
         "file": "src/app/shared/shared.module.ts",
-        "hash": "6626447526467318842"
+        "hash": "423735556838923550"
       },
       {
         "file": "src/assets/.gitkeep",
         "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/assets/data/db.js",
+        "hash": "5396922541831404236"
       },
       {
         "file": "src/assets/data/event-info-184.json",
@@ -156,7 +235,11 @@
       },
       {
         "file": "src/assets/data/events.json",
-        "hash": "11725798898596386231"
+        "hash": "1953194769852398750"
+      },
+      {
+        "file": "src/assets/data/server.js",
+        "hash": "13006386550291650981"
       },
       {
         "file": "src/assets/img/sample-image.jpg",
@@ -172,15 +255,15 @@
       },
       {
         "file": "src/index.html",
-        "hash": "9262387158349552847"
+        "hash": "5896688339977698751"
       },
       {
         "file": "src/main.ts",
-        "hash": "4927504514031276065"
+        "hash": "16153221736841279242"
       },
       {
-        "file": "src/styles.css",
-        "hash": "5195668842064076916"
+        "file": "src/styles.scss",
+        "hash": "143682938706248759"
       },
       {
         "file": "tsconfig.app.json",
@@ -188,7 +271,7 @@
       },
       {
         "file": "tsconfig.json",
-        "hash": "6830907402848794383"
+        "hash": "16742261917417788932"
       },
       {
         "file": "tsconfig.spec.json",

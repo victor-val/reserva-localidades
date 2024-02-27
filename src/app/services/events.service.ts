@@ -14,7 +14,7 @@ export class EventsService {
     return this.http.get<Array<Evento>>(this.url + '/events');
   }
 
-  getEventDetail(id: number): Observable<DetalleEventoResponse> {
+  getEventInfo(id: number): Observable<DetalleEventoResponse> {
     return this.http.get<DetalleEventoResponse>(this.url + '/event_info_' + id);
   }
 }

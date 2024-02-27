@@ -1,12 +1,13 @@
 export interface DetalleEvento {
+  id: number;
   title: string;
   sessions: Session[];
 }
 export interface Session {
-  date: string;
+  date: number;
   availability: number;
 }
 export interface DetalleEventoResponse {
-  event: { title: string };
+  event: { id: number; title: string };
   sessions: Session[];
 }
