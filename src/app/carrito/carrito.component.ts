@@ -3,11 +3,12 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  OnDestroy,
   OnInit,
 } from '@angular/core';
 import { CartElement } from '@interfaces/cart-element.interface';
 import { CartService } from '@services/cart.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-carrito',
@@ -17,9 +18,10 @@ import { Observable } from 'rxjs';
   styleUrl: './carrito.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CarritoComponent implements OnInit {
+export class CarritoComponent implements OnInit, OnDestroy {
   products: CartElement[] = [];
   products$!: Observable<CartElement[]>;
+  subscription!: Subscription;
 
   constructor(
     private cartService: CartService,
@@ -28,14 +30,17 @@ export class CarritoComponent implements OnInit {
 
   ngOnInit() {
     this.products$ = this.cartService.getProducts$();
-    this.products$.subscribe((products) => {
+    this.subscription = this.products$.subscribe((products) => {
       this.products = products;
       this.cdr.detectChanges();
     });
   }
 
   removeFromCart(id: number, dateSesion: number) {
-    console.log(dateSesion);
     this.cartService.deleteProduct(id, dateSesion);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

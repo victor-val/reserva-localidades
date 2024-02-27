@@ -32,7 +32,6 @@ export class CarteleraComponent implements OnInit, OnDestroy {
     this.subs = this.eventsService.getEvents().subscribe((events) => {
       this.eventos = events;
       this.eventos.sort((a, b) => a.endDate - b.endDate);
-      console.log(this.eventos);
       this.cdr.detectChanges();
     });
   }

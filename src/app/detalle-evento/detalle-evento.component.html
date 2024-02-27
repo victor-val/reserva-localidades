@@ -1,27 +1,30 @@
-<div class="back">
-  <a routerLink="/">Volver</a>
-</div>
-<div class="detalle">
-  <div>
-    <ng-container *ngIf="detalle; else sinDetalle">
-      <h4>Sesiones disponibles para {{ detalle.title }}:</h4>
-      <div class="sesiones">
-        <p *ngFor="let session of detalle.sessions" class="sesion">
-          <span>
-            Fecha: {{ session.date | date : "dd/MM/yyyy" }}, Disponibilidad:
-            {{ session.availability }}
-          </span>
-          <span class="contador">
-            <span (click)="removeFromCart(detalle.id, session.date)">-</span>
-            {{ getSeatsSelected(detalle.id, session.date) }}
-            <span (click)="addToCart(detalle.id, detalle.title, session)"
-              >+</span
-            >
-          </span>
-        </p>
-      </div>
-    </ng-container>
-    <ng-template #sinDetalle> EVENT INFO NOT FOUND</ng-template>
+<div class="detalle-evento">
+  <div class="back">
+    <a routerLink="/">Volver</a>
   </div>
-  <app-carrito></app-carrito>
+  <div class="detalle">
+    <div>
+      <ng-container *ngIf="detalle; else sinDetalle">
+        <h4>Sesiones disponibles para {{ detalle.title }}:</h4>
+        <div class="sesiones">
+          <p *ngFor="let session of detalle.sessions" class="sesion">
+            <span class="detalle_sesion">
+              <span>Fecha: {{ session.date | date : "dd/MM/yyyy" }}</span
+              >,
+              <span>Disponibilidad: {{ session.availability }}</span>
+            </span>
+            <span class="contador">
+              <span (click)="removeFromCart(detalle.id, session.date)">-</span>
+              {{ getSeatsSelected(detalle.id, session.date) }}
+              <span (click)="addToCart(detalle.id, detalle.title, session)"
+                >+</span
+              >
+            </span>
+          </p>
+        </div>
+      </ng-container>
+      <ng-template #sinDetalle> EVENT INFO NOT FOUND</ng-template>
+    </div>
+    <app-carrito></app-carrito>
+  </div>
 </div>

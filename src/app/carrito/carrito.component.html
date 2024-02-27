@@ -1,17 +1,23 @@
-<p>Mi carrito</p>
-<div>
-  <ng-container *ngFor="let product of products">
-    {{ product.title }}
-    <ng-container *ngFor="let session of product.sessions">
-      <p>
-        {{ session.dateSession | date : "dd/MM/yyyy" }}
-        x{{ session.seatsSelected }}
-        <img
-          src="assets/img/trash.png"
-          alt="Imagen de papelera"
-          (click)="removeFromCart(product.id, session.dateSession)"
-        />
-      </p>
+<div class="contenedor">
+  <h4>Mi carrito</h4>
+  <div>
+    <ng-container *ngFor="let product of products">
+      <h4 class="title">{{ product.title }}</h4>
+      <ng-container *ngFor="let session of product.sessions">
+        <div class="sesion">
+          <span class="fecha">{{
+            session.dateSession | date : "dd/MM/yyyy"
+          }}</span>
+          <span class="seats"
+            >x{{ session.seatsSelected }}
+            <img
+              src="assets/img/trash.png"
+              alt="Imagen de papelera"
+              (click)="removeFromCart(product.id, session.dateSession)"
+            />
+          </span>
+        </div>
+      </ng-container>
     </ng-container>
-  </ng-container>
+  </div>
 </div>

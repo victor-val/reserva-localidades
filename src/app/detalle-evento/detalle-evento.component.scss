@@ -23,10 +23,24 @@
   justify-content: space-around;
 }
 
-.contador span {
-  cursor: pointer;
+.contador {
+  width: 20%;
+  span {
+    cursor: pointer;
+    padding: 0px 10px;
+  }
 }
 
 .sesiones {
   border: 0.2px solid;
+  padding: 20px 0;
+}
+
+.detalle_sesion {
+  margin-left: 1em;
+  width: 80%;
+}
+
+.detalle-evento {
+  margin-top: 3em;
 }

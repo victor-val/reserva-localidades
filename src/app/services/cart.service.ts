@@ -13,7 +13,6 @@ export class CartService {
   addProduct(id: number, title: string, sesion: Session) {
     if (sesion.availability === 0) return;
     const product = this.products.find((p) => p.id === id);
-    console.log(product);
     if (!product) {
       this.products.push({
         id,
@@ -32,35 +31,28 @@ export class CartService {
         product.sessions.sort((a, b) => a.dateSession - b.dateSession);
       }
     }
-
-    console.log(this.products);
     this.products$.next(this.products);
   }
 
   deleteProduct(id: number, dateSesion: number) {
-    console.log('deleteProduct', id, dateSesion);
     const product = this.products.find((p) => p.id === id);
     if (!product) {
       return;
     }
-    console.log('deleteProduct', product);
     const sesionSelected = product.sessions.find(
       (s) => s.dateSession === dateSesion
     );
     if (!sesionSelected) {
       return;
     }
-    console.log('deleteProduct', sesionSelected);
     sesionSelected.seatsSelected -= 1;
     if (sesionSelected.seatsSelected === 0) {
       product.sessions = product.sessions.filter(
         (s) => s.dateSession !== dateSesion
       );
-      console.log(product.sessions.length);
       if (product.sessions.length === 0) {
         this.products = this.products.filter((product) => product.id !== id);
       }
-      console.log(this.products);
     }
     this.products$.next(this.products);
   }

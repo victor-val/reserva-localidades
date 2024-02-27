@@ -2,3 +2,29 @@ img {
   height: 1em;
   cursor: pointer;
 }
+
+@media screen and (width > 600px) {
+  .contenedor {
+    margin-left: 2em;
+  }
+}
+@media screen and (width <= 600px) {
+  .contenedor {
+    margin-top: 2em;
+  }
+}
+.title {
+  margin-top: 1em;
+}
+.sesion {
+  display: flex;
+}
+.fecha {
+  width: 80%;
+}
+.seats {
+  width: 20%;
+}
+img {
+  margin-left: 2em;
+}
