@@ -18,7 +18,7 @@
       {{ evento.startDate | date : "dd/MM/yyyy" }} -
       {{ evento.endDate | date : "dd/MM/yyyy" }}
     </p>
-    <p [innerHTML]="evento.description"></p>
+    <p class="description" [innerHTML]="evento.description"></p>
   </mat-card-content>
   <mat-card-actions>
     <button (click)="goToDetail()" mat-raised-button color="primary">
