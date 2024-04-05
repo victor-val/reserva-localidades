@@ -30,10 +30,10 @@ export class CarritoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.products$ = this.cartService.getProducts$();
-    this.subscription = this.products$.subscribe((products) => {
+    /*     this.subscription = this.products$.subscribe((products) => {
       this.products = products;
       this.cdr.detectChanges();
-    });
+    }); */
   }
 
   removeFromCart(id: number, dateSesion: number) {

@@ -1,7 +1,7 @@
 <div class="contenedor">
   <h4>Mi carrito</h4>
   <div>
-    <ng-container *ngFor="let product of products">
+    <ng-container *ngFor="let product of products$ | async ">
       <h4 class="title">{{ product.title }}</h4>
       <ng-container *ngFor="let session of product.sessions">
         <div class="sesion">
