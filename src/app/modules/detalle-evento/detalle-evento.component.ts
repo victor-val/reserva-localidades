@@ -68,7 +68,9 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
     if (sesion.availability === 0) return;
     const seatsSelected = this.getSeatsSelected(id, sesion.date);
     if (sesion.availability >= seatsSelected + 1)
-      this.cartService.addProduct(id, title, sesion.date);
+      this.cartService
+        .addProduct(id, title, sesion.date)
+        .subscribe((product) => console.log(product));
   }
 
   removeFromCart(id: number, dateSesion: number) {

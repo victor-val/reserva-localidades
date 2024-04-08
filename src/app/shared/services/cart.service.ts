@@ -1,36 +1,90 @@
 import { Injectable } from '@angular/core';
 import { CartElement } from '../interfaces/cart-element.interface';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  delay,
+  filter,
+  map,
+  pipe,
+  take,
+  tap,
+  timer,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  products: CartElement[] = [];
   private products$ = new BehaviorSubject<CartElement[]>([]);
 
-  addProduct(id: number, title: string, sesion: number) {
-    const product = this.products.find((p) => p.id === id);
-    if (!product) {
-      this.products.push({
-        id,
-        title,
-        sessions: [{ dateSession: sesion, seatsSelected: 1 }],
-      });
-    } else {
-      const sesionSel = product.sessions.find((s) => s.dateSession === sesion);
-      if (sesionSel) {
-        sesionSel.seatsSelected = sesionSel.seatsSelected + 1;
-      } else {
-        product.sessions.push({ dateSession: sesion, seatsSelected: 1 });
-        product.sessions.sort((a, b) => a.dateSession - b.dateSession);
+  constructor() {
+    const prod = sessionStorage.getItem('productos');
+    if (prod !== 'undefined') {
+      const productsSession: CartElement[] = JSON.parse(prod!);
+      if (productsSession) {
+        this.products$.next(productsSession);
       }
     }
-    this.products$.next(this.products);
+
+    this.getProducts$().subscribe((products) => {
+      sessionStorage.setItem('productos', JSON.stringify(products));
+    });
+  }
+
+  addProduct(
+    id: number,
+    title: string,
+    sesion: number
+  ): Observable<CartElement> {
+    let product: CartElement | undefined;
+    let productos!: CartElement[];
+    this.getProducts$()
+      .pipe(
+        map((products) => {
+          productos = products;
+          return products.find((product) => product.id === id);
+        }),
+        take(1)
+      )
+      .subscribe((producto) => {
+        product = producto;
+        if (!product) {
+          product = {
+            id,
+            title,
+            sessions: [{ dateSession: sesion, seatsSelected: 1 }],
+          };
+          productos.push(product);
+        } else {
+          const sesionSel = product.sessions.find(
+            (s) => s.dateSession === sesion
+          );
+          if (sesionSel) {
+            sesionSel.seatsSelected = sesionSel.seatsSelected + 1;
+          } else {
+            product.sessions.push({ dateSession: sesion, seatsSelected: 1 });
+            product.sessions.sort((a, b) => a.dateSession - b.dateSession);
+          }
+        }
+      });
+    return timer(1000).pipe(
+      tap(() => this.products$.next(productos)),
+      map(() => product!)
+    );
   }
 
   deleteProduct(id: number, dateSesion: number) {
-    const product = this.products.find((p) => p.id === id);
+    let product: CartElement | undefined;
+    let productos!: CartElement[];
+    this.getProducts$()
+      .pipe(
+        map((products) => {
+          productos = products;
+          return products.find((product) => product.id === id);
+        })
+      )
+      .subscribe((producto) => (product = producto));
     if (!product) return;
     const sesionSelected = product.sessions.find(
       (s) => s.dateSession === dateSesion
@@ -42,10 +96,10 @@ export class CartService {
         (s) => s.dateSession !== dateSesion
       );
       if (product.sessions.length === 0) {
-        this.products = this.products.filter((product) => product.id !== id);
+        productos = productos.filter((product) => product.id !== id);
       }
     }
-    this.products$.next(this.products);
+    this.products$.next(productos);
   }
 
   getProducts$(): Observable<CartElement[]> {
@@ -53,7 +107,10 @@ export class CartService {
   }
 
   getSeatsSelected(id: number, dateSesion: number): number {
-    const product = this.products.find((p) => p.id === id);
+    let product: CartElement | undefined;
+    this.getProducts$()
+      .pipe(map((products) => products.find((product) => product.id === id)))
+      .subscribe((producto) => (product = producto));
     if (!product) return 0;
     const sesionSelected = product.sessions.find(
       (s) => s.dateSession === dateSesion
