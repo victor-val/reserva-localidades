@@ -18,7 +18,7 @@ import { Observable, Subscription } from 'rxjs';
   styleUrl: './carrito.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CarritoComponent implements OnInit, OnDestroy {
+export class CarritoComponent implements OnInit {
   products: CartElement[] = [];
   products$!: Observable<CartElement[]>;
   subscription!: Subscription;
@@ -40,7 +40,7 @@ export class CarritoComponent implements OnInit, OnDestroy {
     this.cartService.deleteProduct(id, dateSesion);
   }
 
-  ngOnDestroy() {
+  /*   ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
+  } */
 }
