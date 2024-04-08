@@ -1,16 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CartElement } from '../interfaces/cart-element.interface';
-import {
-  BehaviorSubject,
-  Observable,
-  delay,
-  filter,
-  map,
-  pipe,
-  take,
-  tap,
-  timer,
-} from 'rxjs';
+import { BehaviorSubject, Observable, map, tap, timer } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -38,36 +28,25 @@ export class CartService {
     sesion: number
   ): Observable<CartElement> {
     let product: CartElement | undefined;
-    let productos!: CartElement[];
-    this.getProducts$()
-      .pipe(
-        map((products) => {
-          productos = products;
-          return products.find((product) => product.id === id);
-        }),
-        take(1)
-      )
-      .subscribe((producto) => {
-        product = producto;
-        if (!product) {
-          product = {
-            id,
-            title,
-            sessions: [{ dateSession: sesion, seatsSelected: 1 }],
-          };
-          productos.push(product);
-        } else {
-          const sesionSel = product.sessions.find(
-            (s) => s.dateSession === sesion
-          );
-          if (sesionSel) {
-            sesionSel.seatsSelected = sesionSel.seatsSelected + 1;
-          } else {
-            product.sessions.push({ dateSession: sesion, seatsSelected: 1 });
-            product.sessions.sort((a, b) => a.dateSession - b.dateSession);
-          }
-        }
-      });
+    const productos: CartElement[] = this.products$.getValue();
+    product = productos.find((product) => product.id === id || null);
+    if (!product) {
+      product = {
+        id,
+        title,
+        sessions: [{ dateSession: sesion, seatsSelected: 1 }],
+      };
+      productos.push(product);
+    } else {
+      const sesionSel = product.sessions.find((s) => s.dateSession === sesion);
+      if (sesionSel) {
+        sesionSel.seatsSelected = sesionSel.seatsSelected + 1;
+      } else {
+        product.sessions.push({ dateSession: sesion, seatsSelected: 1 });
+        product.sessions.sort((a, b) => a.dateSession - b.dateSession);
+      }
+    }
+
     return timer(1000).pipe(
       tap(() => this.products$.next(productos)),
       map(() => product!)
@@ -75,16 +54,10 @@ export class CartService {
   }
 
   deleteProduct(id: number, dateSesion: number) {
-    let product: CartElement | undefined;
-    let productos!: CartElement[];
-    this.getProducts$()
-      .pipe(
-        map((products) => {
-          productos = products;
-          return products.find((product) => product.id === id);
-        })
-      )
-      .subscribe((producto) => (product = producto));
+    let productos: CartElement[] = this.products$.getValue();
+    const product: CartElement | undefined = productos.find(
+      (product) => product.id === id || null
+    );
     if (!product) return;
     const sesionSelected = product.sessions.find(
       (s) => s.dateSession === dateSesion
@@ -107,10 +80,10 @@ export class CartService {
   }
 
   getSeatsSelected(id: number, dateSesion: number): number {
-    let product: CartElement | undefined;
-    this.getProducts$()
-      .pipe(map((products) => products.find((product) => product.id === id)))
-      .subscribe((producto) => (product = producto));
+    const productos: CartElement[] = this.products$.getValue();
+    const product: CartElement | undefined = productos.find(
+      (product) => product.id === id || null
+    );
     if (!product) return 0;
     const sesionSelected = product.sessions.find(
       (s) => s.dateSession === dateSesion
